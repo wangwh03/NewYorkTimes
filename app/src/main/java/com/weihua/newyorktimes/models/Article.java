@@ -1,4 +1,4 @@
-package com.weihua.newyorktimes;
+package com.weihua.newyorktimes.models;
 
 import java.io.Serializable;
 
@@ -6,10 +6,8 @@ public class Article implements Serializable {
     private String thumbnail;
     private String headline;
 
-    public Article(String thumbnail, String headline) {
-        this.thumbnail = thumbnail;
-        this.headline = headline;
-    }
+    private String abstractContent;
+    private String title;
 
     public String getThumbnail() {
         return thumbnail;
@@ -25,5 +23,21 @@ public class Article implements Serializable {
 
     public void setHeadline(String headline) {
         this.headline = headline;
+    }
+
+    public String getAbstractContent() {
+        return abstractContent;
+    }
+
+    public void setAbstractContent(String abstractContent) {
+        this.abstractContent = abstractContent;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 }
