@@ -1,9 +1,9 @@
 package com.weihua.newyorktimes.mostpopular;
 
-import android.os.Bundle;
 import android.util.Log;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.weihua.newyorktimes.R;
+import com.weihua.newyorktimes.activities.BaseActivity;
 import com.weihua.newyorktimes.client.NewYorkTimesClient;
 import com.weihua.newyorktimes.models.Article;
 import com.weihua.newyorktimes.models.ArticleFactory;

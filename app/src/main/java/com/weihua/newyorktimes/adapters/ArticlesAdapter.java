@@ -1,4 +1,4 @@
-package com.weihua.newyorktimes.search.adapters;
+package com.weihua.newyorktimes.adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;

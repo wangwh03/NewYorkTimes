@@ -1,4 +1,4 @@
-package com.weihua.newyorktimes.mostpopular;
+package com.weihua.newyorktimes.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,18 +10,15 @@ import butterknife.ButterKnife;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.weihua.newyorktimes.R;
-import com.weihua.newyorktimes.client.NewYorkTimesClient;
 import com.weihua.newyorktimes.models.Article;
 import com.weihua.newyorktimes.models.ArticleFactory;
-import com.weihua.newyorktimes.search.adapters.ArticlesAdapter;
+import com.weihua.newyorktimes.adapters.ArticlesAdapter;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import static com.weihua.newyorktimes.client.NewYorkTimesClient.API_KEY;
 
 public abstract class BaseActivity extends AppCompatActivity {
     protected static final int SPAN_COUNT = 2;

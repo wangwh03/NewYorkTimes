@@ -1,6 +1,5 @@
-package com.weihua.newyorktimes.search.activities;
+package com.weihua.newyorktimes.search;
 
-import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -8,8 +7,7 @@ import butterknife.BindView;
 import com.weihua.newyorktimes.R;
 import com.weihua.newyorktimes.models.Article;
 import com.weihua.newyorktimes.models.ArticleFactory;
-import com.weihua.newyorktimes.mostpopular.BaseActivity;
-import com.weihua.newyorktimes.search.utils.SearchUrlBuilder;
+import com.weihua.newyorktimes.activities.BaseActivity;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;

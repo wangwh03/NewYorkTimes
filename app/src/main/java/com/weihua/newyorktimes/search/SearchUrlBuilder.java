@@ -1,4 +1,4 @@
-package com.weihua.newyorktimes.search.utils;
+package com.weihua.newyorktimes.search;
 
 import java.net.MalformedURLException;
 import java.net.URL;
