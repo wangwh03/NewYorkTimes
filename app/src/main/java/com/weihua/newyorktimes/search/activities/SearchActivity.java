@@ -1,24 +1,30 @@
 package com.weihua.newyorktimes.search.activities;
 
-import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import butterknife.BindView;
 import com.weihua.newyorktimes.R;
-import com.weihua.newyorktimes.mostpopular.MostPopularActivity;
+import com.weihua.newyorktimes.models.Article;
+import com.weihua.newyorktimes.models.ArticleFactory;
+import com.weihua.newyorktimes.mostpopular.BaseActivity;
 import com.weihua.newyorktimes.search.utils.SearchUrlBuilder;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.List;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-public class SearchActivity extends MostPopularActivity {
+public class SearchActivity extends BaseActivity {
     @BindView(R.id.search_button) Button searchButton;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void setContentView() {
         setContentView(R.layout.activity_search);
+    }
 
+    @Override protected void customizedSetUp() {
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View view) {
                 fetchData();
@@ -26,7 +32,7 @@ public class SearchActivity extends MostPopularActivity {
         });
     }
 
-    private void fetchData() {
+    protected void fetchData() {
         try {
             URL url = new SearchUrlBuilder().setBeginDate("20170101").setQuery("education").setSort(SearchUrlBuilder.SORT_TYPE.NEWEST).build();
             fetchData(url);
@@ -36,4 +42,7 @@ public class SearchActivity extends MostPopularActivity {
         }
     }
 
+    protected List<Article> parseArticles(JSONObject response) throws JSONException {
+        return ArticleFactory.createArticlesForSearch(response);
+    }
 }
