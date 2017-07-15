@@ -1,6 +1,9 @@
 package com.weihua.newyorktimes.models;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -28,16 +31,31 @@ public class ArticleFactory {
         JSONArray articlesJson = response.getJSONObject("response").getJSONArray("docs");
         ArrayList<Article> articles = new ArrayList<>();
         for (int i = 0; i < articlesJson.length(); i++) {
-            articles.add(createArticle(articlesJson.getJSONObject(i)));
+            articles.add(createArticleForSearch(articlesJson.getJSONObject(i)));
         }
         return articles;
     }
 
-    private static Article createArticle(JSONObject articleJson) throws JSONException {
+    private static Article createArticleForSearch(JSONObject articleJson) throws JSONException {
         Article article = new Article();
         article.setThumbnail(getThumbnail(articleJson));
         article.setHeadline(articleJson.getJSONObject("headline").getString("main"));
+        article.setLeadParagraph(articleJson.getString("lead_paragraph"));
+        article.setByline(articleJson.getJSONObject("byline").getString("original").replace("By ", ""));
+        try {
+            article.setPublishedDate(formatDate(articleJson.getString("pub_date")));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         return article;
+    }
+
+    private static String formatDate(String dateString) throws ParseException {
+        SimpleDateFormat sourceDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'H:mm:ssZ");
+        Date time = sourceDateFormat.parse(dateString);
+
+        SimpleDateFormat desiredDateFormat = new SimpleDateFormat("MMM d");
+        return desiredDateFormat.format(time).toString();
     }
 
     private static String getThumbnail(JSONObject articleJson) throws JSONException {

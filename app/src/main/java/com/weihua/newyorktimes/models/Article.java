@@ -5,6 +5,9 @@ import java.io.Serializable;
 public class Article implements Serializable {
     private String thumbnail;
     private String headline;
+    private String leadParagraph;
+    private String byline;
+    private String publishedDate;
 
     private String abstractContent;
     private String title;
@@ -39,5 +42,29 @@ public class Article implements Serializable {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getLeadParagraph() {
+        return leadParagraph;
+    }
+
+    public void setLeadParagraph(String leadParagraph) {
+        this.leadParagraph = leadParagraph;
+    }
+
+    public String getByline() {
+        return byline;
+    }
+
+    public void setByline(String byline) {
+        this.byline = byline;
+    }
+
+    public String getPublishedDate() {
+        return publishedDate;
+    }
+
+    public void setPublishedDate(String publishedDate) {
+        this.publishedDate = publishedDate;
     }
 }

@@ -2,6 +2,7 @@ package com.weihua.newyorktimes.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
@@ -21,14 +22,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public abstract class BaseActivity extends AppCompatActivity {
-    protected static final int SPAN_COUNT = 2;
-
-    protected AsyncHttpClient client = new AsyncHttpClient();
-
     @BindView(R.id.articles) RecyclerView articlesView;
     protected ArticlesAdapter articlesAdapter;
     protected RecyclerView.LayoutManager layoutManager;
 
+    protected AsyncHttpClient client = new AsyncHttpClient();
     protected List<Article> articles = new ArrayList<>();
 
     @Override
@@ -38,7 +36,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
-        layoutManager = new StaggeredGridLayoutManager(SPAN_COUNT, StaggeredGridLayoutManager.VERTICAL);
+        layoutManager = new LinearLayoutManager(this);
         articlesView.setLayoutManager(layoutManager);
 
         articlesAdapter = new ArticlesAdapter(this, articles);
@@ -58,6 +56,7 @@ public abstract class BaseActivity extends AppCompatActivity {
                 super.onSuccess(statusCode, headers, response);
 
                 try {
+                    articles.clear();
                     articles.addAll(parseArticles(response));
                     articlesAdapter.notifyDataSetChanged();
                 } catch (JSONException e) {
@@ -72,7 +71,5 @@ public abstract class BaseActivity extends AppCompatActivity {
         });
     }
 
-    protected List<Article> parseArticles(JSONObject response) throws JSONException {
-        return ArticleFactory.createArticlesForMostPopular(response);
-    }
+    protected abstract List<Article> parseArticles(JSONObject response) throws JSONException;
 }

@@ -19,4 +19,14 @@
     <item name="cardElevation">@dimen/card_elevation</item>
   </style>
 
+  <style name="headline">
+    <item name="android:textColor">@color/grey_dark</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:fontFamily">Times</item>
+  </style>
+
+  <style name="date">
+    <item name="android:textColor">@color/grey_light</item>
+    <item name="android:textSize">10dp</item>
+  </style>
 </resources>

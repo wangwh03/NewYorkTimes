@@ -36,6 +36,9 @@ public class ArticlesAdapter extends RecyclerView.Adapter<ArticlesAdapter.Articl
         holder.headlineView.setText(article.getHeadline());
         holder.titleTextView.setText(article.getTitle());
         holder.abstractContentTextView.setText(article.getAbstractContent());
+        holder.leadParagraphTextView.setText(article.getLeadParagraph());
+        holder.bylineTextView.setText(article.getByline());
+        holder.publishedDateTextView.setText(article.getPublishedDate());
 
         if (article.getThumbnail() != "") {
             Picasso.with(context).load(article.getThumbnail()).placeholder(R.drawable.ic_placeholder_image_thumbnail).into(holder.thumbnailView);
@@ -55,6 +58,9 @@ public class ArticlesAdapter extends RecyclerView.Adapter<ArticlesAdapter.Articl
         @BindView(R.id.headline) TextView headlineView;
         @BindView(R.id.title) TextView titleTextView;
         @BindView(R.id.abstract_content) TextView abstractContentTextView;
+        @BindView(R.id.lead_paragraph) TextView leadParagraphTextView;
+        @BindView(R.id.byline) TextView bylineTextView;
+        @BindView(R.id.date) TextView publishedDateTextView;
 
         public ArticleViewHolder(View itemView) {
             super(itemView);

@@ -60,6 +60,7 @@ public class MostPopularActivity extends BaseActivity {
         });
     }
 
+    @Override
     protected List<Article> parseArticles(JSONObject response) throws JSONException {
         return ArticleFactory.createArticlesForMostPopular(response);
     }
