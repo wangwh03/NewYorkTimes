@@ -11,6 +11,11 @@ android {
     versionCode 1
     versionName "1.0"
   }
+
+  compileOptions {
+    incremental true
+  }
+
   buildTypes {
     release {
       minifyEnabled false
@@ -32,3 +37,11 @@ dependencies {
   testCompile 'junit:junit:4.12'
   annotationProcessor 'com.jakewharton:butterknife-compiler:8.7.0'
 }
+//
+//afterEvaluate {
+//  tasks.withType(JavaCompile) { task->
+//    println "task detected: " + task.name
+//    task.classpath = task.classpath + files(destinationDir)
+//    println "classpath: " + task.classpath.getFiles()
+//  }
+//}

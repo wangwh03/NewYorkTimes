@@ -7,6 +7,7 @@ import android.widget.EditText;
 import butterknife.BindView;
 import com.weihua.newyorktimes.R;
 import com.weihua.newyorktimes.activities.BaseActivity;
+import com.weihua.newyorktimes.activities.BaseActivity2;
 import com.weihua.newyorktimes.models.Article;
 import com.weihua.newyorktimes.models.ArticleFactory;
 import java.net.MalformedURLException;
