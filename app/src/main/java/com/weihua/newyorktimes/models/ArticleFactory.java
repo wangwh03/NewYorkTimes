@@ -21,10 +21,10 @@ public class ArticleFactory {
     }
 
     private static Article createArticleForMostPopular(JSONObject jsonObject) throws JSONException {
-        Article article = new Article();
-        article.setTitle(jsonObject.getString("title"));
-        article.setAbstractContent(jsonObject.getString("abstract"));
-        return article;
+        return Article.builder()
+            .setTitle(jsonObject.getString("title"))
+            .setAbstractContent(jsonObject.getString("abstract"))
+            .build();
     }
 
     public static ArrayList<Article> createArticlesForSearch(JSONObject response) throws JSONException {
@@ -37,17 +37,19 @@ public class ArticleFactory {
     }
 
     private static Article createArticleForSearch(JSONObject articleJson) throws JSONException {
-        Article article = new Article();
-        article.setThumbnail(getThumbnail(articleJson));
-        article.setHeadline(articleJson.getJSONObject("headline").getString("main"));
-        article.setLeadParagraph(articleJson.getString("lead_paragraph"));
-        article.setByline(articleJson.getJSONObject("byline").getString("original").replace("By ", ""));
+        String publishedDate = null;
         try {
-            article.setPublishedDate(formatDate(articleJson.getString("pub_date")));
+            publishedDate = formatDate(articleJson.getString("pub_date"));
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        return article;
+        return Article.builder()
+            .setThumbnail(getThumbnail(articleJson))
+            .setHeadline(articleJson.getJSONObject("headline").getString("main"))
+            .setLeadParagraph(articleJson.getString("lead_paragraph"))
+            .setByline(articleJson.getJSONObject("byline").getString("original").replace("By ", ""))
+            .setPublishedDate(publishedDate)
+            .build();
     }
 
     private static String formatDate(String dateString) throws ParseException {

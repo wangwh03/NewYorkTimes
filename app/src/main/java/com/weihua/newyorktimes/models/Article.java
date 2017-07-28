@@ -1,70 +1,32 @@
 package com.weihua.newyorktimes.models;
 
+import android.support.annotation.Nullable;
+import com.google.auto.value.AutoValue;
 import java.io.Serializable;
 
-public class Article implements Serializable {
-    private String thumbnail;
-    private String headline;
-    private String leadParagraph;
-    private String byline;
-    private String publishedDate;
+@AutoValue
+public abstract class Article implements Serializable {
+    @Nullable public abstract String getThumbnail();
+    @Nullable public abstract String getHeadline();
+    public abstract String getLeadParagraph();
+    public abstract String getByline();
+    @Nullable public abstract String getPublishedDate();
+    @Nullable public abstract String getAbstractContent();
+    @Nullable public abstract String getTitle();
 
-    private String abstractContent;
-    private String title;
-
-    public String getThumbnail() {
-        return thumbnail;
+    public static Builder builder() {
+        return new AutoValue_Article.Builder();
     }
 
-    public void setThumbnail(String thumbnail) {
-        this.thumbnail = thumbnail;
-    }
-
-    public String getHeadline() {
-        return headline;
-    }
-
-    public void setHeadline(String headline) {
-        this.headline = headline;
-    }
-
-    public String getAbstractContent() {
-        return abstractContent;
-    }
-
-    public void setAbstractContent(String abstractContent) {
-        this.abstractContent = abstractContent;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getLeadParagraph() {
-        return leadParagraph;
-    }
-
-    public void setLeadParagraph(String leadParagraph) {
-        this.leadParagraph = leadParagraph;
-    }
-
-    public String getByline() {
-        return byline;
-    }
-
-    public void setByline(String byline) {
-        this.byline = byline;
-    }
-
-    public String getPublishedDate() {
-        return publishedDate;
-    }
-
-    public void setPublishedDate(String publishedDate) {
-        this.publishedDate = publishedDate;
+    @AutoValue.Builder
+    public abstract static class Builder {
+        public abstract Builder setThumbnail(String thumbnail);
+        public abstract Builder setHeadline(String headline);
+        public abstract Builder setLeadParagraph(String  leadParagraph);
+        public abstract Builder setByline(String byline);
+        public abstract Builder setPublishedDate(String publishedDate);
+        public abstract Builder setAbstractContent(String abstractContent);
+        public abstract Builder setTitle(String title);
+        public abstract Article build();
     }
 }
