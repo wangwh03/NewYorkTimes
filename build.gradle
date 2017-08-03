@@ -21,3 +21,6 @@ allprojects {
 task clean(type: Delete) {
   delete rootProject.buildDir
 }
+
+// This lets us see System.out.println messages emitted by the AP (e.g. Butter Knife).
+logging.captureStandardOutput LogLevel.INFO

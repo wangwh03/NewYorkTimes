@@ -7,7 +7,6 @@ import android.widget.EditText;
 import butterknife.BindView;
 import com.weihua.newyorktimes.R;
 import com.weihua.newyorktimes.activities.BaseActivity;
-import com.weihua.newyorktimes.activities.BaseActivity2;
 import com.weihua.newyorktimes.models.Article;
 import com.weihua.newyorktimes.models.ArticleFactory;
 import java.net.MalformedURLException;
@@ -42,8 +41,11 @@ public class SearchActivity extends BaseActivity {
         try {
             URL url = new SearchUrlBuilder()
                 .setBeginDate(DEFAULT_SEARCH_BEGIN_DATE)
-                .setQuery(searchQuery.getText().toString().equals("") ? DEFAULT_CATEGORY : searchQuery.getText().toString())
-                .setSort(NEWEST)
+                .setQuery(searchQuery.getText().toString().trim().equals("")
+                          ? DEFAULT_CATEGORY
+                          : searchQuery.getText().toString().trim())
+                // This errors for me (stevey).  Something about not being a valid sort type.
+                //.setSort(NEWEST)
                 .build();
             fetchData(url);
         } catch (MalformedURLException e) {

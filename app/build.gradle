@@ -16,6 +16,10 @@ android {
     incremental true
   }
 
+  lintOptions {
+    abortOnError false
+  }
+
   buildTypes {
     release {
       minifyEnabled false
