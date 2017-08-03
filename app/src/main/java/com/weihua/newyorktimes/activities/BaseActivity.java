@@ -4,25 +4,27 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import cz.msebera.android.httpclient.Header;
+
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.weihua.newyorktimes.R;
 import com.weihua.newyorktimes.models.Article;
-import com.weihua.newyorktimes.models.ArticleFactory;
 import com.weihua.newyorktimes.adapters.ArticlesAdapter;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 public abstract class BaseActivity extends AppCompatActivity {
-    @BindView(R.id.articles) RecyclerView articlesView;
+    @BindView(R.id.articles) protected RecyclerView articlesView;
     protected ArticlesAdapter articlesAdapter;
     protected RecyclerView.LayoutManager layoutManager;
 
@@ -53,8 +55,6 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void fetchData(URL url) throws MalformedURLException {
         client.get(url.toExternalForm(), new JsonHttpResponseHandler() {
             @Override public void onSuccess(int statusCode, cz.msebera.android.httpclient.Header[] headers, JSONObject response) {
-                super.onSuccess(statusCode, headers, response);
-
                 try {
                     articles.clear();
                     articles.addAll(parseArticles(response));
@@ -64,7 +64,28 @@ public abstract class BaseActivity extends AppCompatActivity {
                 }
             }
 
-            @Override public void onFailure(int statusCode, cz.msebera.android.httpclient.Header[] headers, String responseString, Throwable throwable) {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+                try {
+                    articles.clear();
+                    articles.addAll(parseArticles(response.getJSONObject(0)));
+                    articlesAdapter.notifyDataSetChanged();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse) {
+                Log.e(this.getClass().getSimpleName(), errorResponse.toString());
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                Log.e(this.getClass().getSimpleName(), errorResponse.toString());
+            }
+
+            @Override public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
                 super.onFailure(statusCode, headers, responseString, throwable);
                 Log.e(this.getClass().getSimpleName(), responseString);
             }
