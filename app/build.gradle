@@ -29,7 +29,7 @@ android {
 }
 
 repositories {
-  maven { url "https://jitpack.io" }
+  maven { url "https://dl.bintray.com/incap/butterknife" }
 }
 
 dependencies {
@@ -40,11 +40,11 @@ dependencies {
   compile 'com.android.support:cardview-v7:26.0.0'
   compile 'com.loopj.android:android-async-http:1.4.9'
   compile 'com.squareup.picasso:picasso:2.5.2'
-  compile 'com.github.stephanenicolas.butterknife:butterknife:sni~enable-incap-m1-SNAPSHOT'
-  compile 'com.github.stephanenicolas.butterknife:butterknife-annotations:sni~enable-incap-m1-SNAPSHOT'
+  compile 'com.jakewharton:butterknife:9.0.0-INCAP-1'
+  compile 'com.jakewharton:butterknife-annotations:9.0.0-INCAP-1'
   compile 'com.android.support.constraint:constraint-layout:+'
   testCompile 'junit:junit:4.12'
-  annotationProcessor 'com.github.stephanenicolas.butterknife:butterknife-compiler:sni~enable-incap-m1-SNAPSHOT'
+  annotationProcessor 'com.jakewharton:butterknife-compiler:9.0.0-INCAP-1'
   provided "com.google.auto.value:auto-value:1.2"
   annotationProcessor "com.google.auto.value:auto-value:1.2"
 }
