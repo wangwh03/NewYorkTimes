@@ -15,8 +15,6 @@ import java.util.List;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import static com.weihua.newyorktimes.search.SearchUrlBuilder.SORT_TYPE.NEWEST;
-
 public class SearchActivity extends BaseActivity {
     private static final String DEFAULT_CATEGORY = "Movie";
     private static final String DEFAULT_SEARCH_BEGIN_DATE = "20170101";
