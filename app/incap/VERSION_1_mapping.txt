@@ -1,0 +1,1 @@
+com.weihua.newyorktimes.search.SearchActivity -- SOURCE:com.weihua.newyorktimes.search.SearchActivity_ViewBinding.java
