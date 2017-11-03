@@ -40,13 +40,13 @@ dependencies {
   implementation 'com.android.support:cardview-v7:26.1.0'
   implementation 'com.loopj.android:android-async-http:1.4.9'
   implementation 'com.squareup.picasso:picasso:2.5.2'
-  implementation 'com.jakewharton:butterknife:9.0.0-INCAP-2'
-  implementation 'com.jakewharton:butterknife-annotations:9.0.0-INCAP-2'
+  implementation 'com.jakewharton:butterknife:9.0.0-INCAP-3'
+  implementation 'com.jakewharton:butterknife-annotations:9.0.0-INCAP-3'
   implementation 'com.android.support.constraint:constraint-layout:1.0.2'
   testImplementation 'junit:junit:4.12'
-  annotationProcessor 'com.jakewharton:butterknife-compiler:9.0.0-INCAP-2'
-  compileOnly "com.google.auto.value:auto-value:1.5-incap-2"
-  annotationProcessor "com.google.auto.value:auto-value:1.5-incap-2"
+  annotationProcessor 'com.jakewharton:butterknife-compiler:9.0.0-INCAP-3'
+  compileOnly "com.google.auto.value:auto-value:1.5-incap-3"
+  annotationProcessor "com.google.auto.value:auto-value:1.5-incap-3"
 }
 //
 //afterEvaluate {
